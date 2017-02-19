@@ -19,21 +19,22 @@ IUSE=""
 
 DEPEND="${PYTHON_DEPS}"
 RDEPEND="${DEPEND}
-	dev-python/cddb-py
-	dev-python/id3-py
-	dev-python/pyid3lib
-	dev-python/pyvorbis
+	dev-python/cddb-py[${PYTHON_USEDEP}]
+	dev-python/id3-py[${PYTHON_USEDEP}]
+	dev-python/pyid3lib[${PYTHON_USEDEP}]
+	dev-python/pyvorbis[${PYTHON_USEDEP}]
 	media-libs/flac
 	media-sound/lame
 	media-sound/cdparanoia"
 REQUIRED_USE=${PYTHON_REQUIRED_USE}
-PATCHES="${FILESDIR}/${PN}-3.1.1-python26.patch
-	${FILESDIR}/${P}-dontuse-jack-cursesmodule.patch
-	${FILESDIR}/add-cddbserver-musicbrainz.patch
-	${FILESDIR}/shebang-python27.patch"
+PATCHES=(
+	"${FILESDIR}/${P}-python26.patch"
+	"${FILESDIR}/${P}-dontuse-jack-cursesmodule.patch"
+	"${FILESDIR}/${P}-add-cddbserver-musicbrainz.patch"
+)
 
 src_install() {
-	dobin jack
+	python_doscript jack
 
 	insinto $(python_get_sitedir)
 	PYTHON_MODNAME="$(ls jack_*.py)"
