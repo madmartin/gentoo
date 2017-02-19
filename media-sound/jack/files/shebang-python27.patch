@@ -1,8 +1,0 @@
---- a/jack	2016-11-16 00:34:18.402706654 +0100
-+++ b/jack	2016-11-16 00:34:09.994636061 +0100
-@@ -1,4 +1,4 @@
--#!/usr/bin/env python
-+#!/usr/bin/python2.7
- ### jack - extract audio from a CD and encode it using 3rd party software
- ### Copyright (C) 1999-2004  Arne Zellentin <zarne@users.sf.net>
- 
