@@ -4,9 +4,10 @@
 
 EAPI=6
 
+DISTUTILS_SINGLE_IMPL=1
 PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="ncurses"
-inherit python-single-r1
+inherit distutils-r1
 
 DESCRIPTION="A frontend for several cd-rippers and mp3 encoders"
 HOMEPAGE="http://www.home.unix-ag.org/arne/jack/"
@@ -34,18 +35,13 @@ PATCHES=(
 )
 
 src_install() {
-	python_doscript jack
+	DOCS=( README doc/ChangeLog doc/TODO )
+	HTML_DOCS=( doc/*html doc/*css doc/*gif )
 
-	insinto $(python_get_sitedir)
-	PYTHON_MODNAME="$(ls jack_*.py)"
-	doins ${PYTHON_MODNAME}
+	distutils-r1_src_install
 
 	insinto /etc
 	newins example.etc.jackrc jackrc
-
 	newman jack.man jack.1
-
-	DOCS=( README doc/ChangeLog doc/TODO )
-	HTML_DOCS=( doc/*html doc/*css doc/*gif )
-	einstalldocs
+	python_doscript jack
 }
