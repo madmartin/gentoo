@@ -4,7 +4,6 @@
 
 EAPI=6
 
-DISTUTILS_SINGLE_IMPL=1
 PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="ncurses"
 inherit distutils-r1
@@ -34,14 +33,15 @@ PATCHES=(
 	"${FILESDIR}/${P}-add-cddbserver-musicbrainz.patch"
 )
 
-src_install() {
-	DOCS=( README doc/ChangeLog doc/TODO )
-	HTML_DOCS=( doc/*html doc/*css doc/*gif )
+python_install() {
+	distutils-r1_python_install
+}
 
-	distutils-r1_src_install
-
+python_install_all() {
 	insinto /etc
 	newins example.etc.jackrc jackrc
 	newman jack.man jack.1
-	python_doscript jack
+	DOCS=( README doc/ChangeLog doc/TODO )
+	HTML_DOCS=( doc/*html doc/*css doc/*gif )
+	distutils-r1_python_install_all
 }
