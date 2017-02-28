@@ -29,7 +29,7 @@ RDEPEND="${DEPEND}
 REQUIRED_USE=${PYTHON_REQUIRED_USE}
 PATCHES=(
 	"${FILESDIR}/${P}-python26.patch"
-	"${FILESDIR}/${P}-dontuse-jack-cursesmodule.patch"
+	"${FILESDIR}/${P}-setup-and-cursesmodule.patch"
 	"${FILESDIR}/${P}-add-cddbserver-musicbrainz.patch"
 )
 
